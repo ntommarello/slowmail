@@ -1,0 +1,190 @@
+// Place all the styles related to the web controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'mixins';
+
+
+html, body {
+    height:100%;
+}
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  height: 100%;
+  color: #424242;
+  margin:0;
+  padding:0;
+  font-size:16px;
+  -webkit-font-smoothing: antialiased;
+}
+@font-face{
+  font-family: 'fakt_slab_light';
+  src: url('faktslabprolightwebfont.eot');
+  src: url('faktslabprolightwebfont.eot?#iefix') format('embedded-opentype'),
+       url('faktslabprolightwebfont.woff') format('woff'),
+       url('faktslabprolightwebfont.ttf') format('truetype'),
+       url('faktslabprolightwebfont.svg#fakt_slab_light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'fakt_slab_light_italic';
+  src: url('faktslabpro-lightitalic-webfont.eot');
+  src: url('faktslabpro-lightitalic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('faktslabpro-lightitalic-webfont.woff') format('woff'),
+       url('faktslabpro-lightitalic-webfont.ttf') format('truetype'),
+       url('faktslabpro-lightitalic-webfont.svg#fakt_slab_light') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'fakt_slab_medium';
+  src: url('faktslabpromedium.eot');
+  src: url('faktslabpromedium.eot?#iefix') format('embedded-opentype'),
+    url('faktslabpromedium.woff') format('woff'),
+    url('faktslabpromedium.ttf') format('truetype'),
+    url('faktslabpromedium.svg#faktslabpromedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.facebook-login {
+    position: relative;
+    display: inline-block;
+    background-color: #576fbe;
+    @include lineargradient(#576fbe, #627DDE);
+    border-radius: 3px;
+    color: white;
+    height: 36px;
+    line-height: 36px;
+    padding: 6px 0;
+    padding-left: 75px;
+    margin: 0px 0 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    text-decoration: none;
+    overflow:hidden;
+    width: 185px;
+    @include roundedCorners(3px);
+
+    span.logo{
+      //background: #5167B0;
+      @include lineargradient(#5167B0, #5C76D2); 
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 55px;
+      line-height: 48px;
+      @include roundedCorners(3px 0 0 3px);
+      text-align: center;
+    }
+
+    img {
+      position: relative;
+      top: 5px;
+      left: -2px;
+      width: 18px;
+      vertical-align: middle;
+      height: 16.5px;
+    }
+
+    &:hover {
+      background-color: #657ED1;
+      color: white;
+      text-decoration: none;
+      @include lineargradient(#657ED1, #718DEA);
+      span.logo{
+        background-color:#556cb9;
+        @include lineargradient(#556cb9, #617AD4);
+      }
+    }
+    &:active {
+      @include lineargradient(#425596, #425596);
+      box-shadow: 0 0 2px 2px #3B4C86 inset;
+      span.logo{
+       background:transparent;
+      }
+
+    }
+  }
+    
+  .facebook-login.sm {
+    font-size: 11px;
+    height: 24px;
+    line-height: 24px;
+    width: 142px;
+    padding-left: 45px;
+    span.logo {
+      width: 35px;
+      line-height: 36px;
+    }
+  }
+
+
+
+
+
+
+.background {
+	background:#B69179;
+    background-repeat:no-repeat;
+    background-position:50% 50%;
+    background-position:50% 50% !important;
+
+    .content {
+    	color:#fff;
+    	margin-left:80px;
+    	padding-top:80px;
+    	width:600px;
+
+	    h1 {
+	      font-family:'fakt_slab_medium', Helvetica;
+	      margin:0px;
+	      font-size:56px;
+	    }
+	    h2 {
+	    	margin-top:10px;
+	    	font-family:'fakt_slab_light', Helvetica;
+	    	font-size:24px;
+	    	line-height:1.6em;
+
+	    	i {
+	    		font-family:'fakt_slab_light_italic', Helvetica;
+	    	}
+	    }
+	    .facebook-login {
+	    	position:absolute;
+	    	margin-top:240px;
+	    }
+    }
+
+
+}
+
+
+.fullscreen,
+.content-a {
+    width:100%;
+    min-height:100%;
+}
+.not-fullscreen,
+.not-fullscreen .content-a,
+.fullscreen.not-overflow,
+.fullscreen.not-overflow .content-a {
+    height:100%;
+    overflow:hidden;
+}
+
+/* content centering styles */
+.content-a {
+    display:table;
+}
+.content-b {
+    display:table-cell;
+    position:relative;
+    vertical-align:middle;
+    text-align:center;
+}
