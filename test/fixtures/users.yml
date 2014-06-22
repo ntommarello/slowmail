@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  login_count: 1
+  avatar: MyString
+  provider: MyString
+  uid: MyString
+  oath_token: MyString
+  oath_expires_at: 2014-06-19 21:28:49
+
+two:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  login_count: 1
+  avatar: MyString
+  provider: MyString
+  uid: MyString
+  oath_token: MyString
+  oath_expires_at: 2014-06-19 21:28:49

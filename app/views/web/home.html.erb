@@ -1,0 +1,5 @@
+<%if current_user%>
+	<%=render :partial=>"web/letters"%>
+<%else%>
+	<%=render :partial=>"web/splash"%>
+<%end%>

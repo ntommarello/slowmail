@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  author_id: 1
+  receiver_id: 1
+  salutation: MyString
+  nickname: MyString
+  email: MyString
+  content: MyText
+  delivery_method: MyString
+  delivery_date: 2014-06-21 18:28:25
+  views_count: 1
+  hearts_count: 1
+  unread: false
+  private: false
+  anonymous: false
+
+two:
+  author_id: 1
+  receiver_id: 1
+  salutation: MyString
+  nickname: MyString
+  email: MyString
+  content: MyText
+  delivery_method: MyString
+  delivery_date: 2014-06-21 18:28:25
+  views_count: 1
+  hearts_count: 1
+  unread: false
+  private: false
+  anonymous: false

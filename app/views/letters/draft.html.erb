@@ -1,0 +1,163 @@
+<%#redo when multiple users%>
+<%if current_user.last_name == "Tommarello"%>
+	<%@receiver_id = 1%>
+	<%@sal = "Hi, Frost!"%>
+<%else%>
+	<%@receiver_id = 4%>
+	<%@sal = "Hi, Nick!"%>
+<%end%>
+<%@city = "San Francisco"%>
+<%@letter = Letter.new%>
+
+
+<div id="author">
+	<div class="letterContainer">
+		<div class="letter_content">
+			<div class="date"><%=@city%><br><%= Time.now.strftime("%B %d, %Y") %></div>
+			  <p onclick="alert('More users not supported yet!')" class="to_button"><%=@sal%></p>
+			 <textarea id="redactor" name="redactor"><%=current_user.draft%></textarea>
+		</div>
+	</div>
+</div>
+
+<div class="hiddenForm" style="display:none">
+	<%= form_for @letter do |f| %>
+	  <%= f.hidden_field :receiver_id, :value=>@receiver_id %>
+	  <%= f.hidden_field :salutation, :value=>@sal %> %>
+	  <%= f.hidden_field :delivery_method, :value=>"Pony Express" %>
+	  <%= f.hidden_field :city, :value=>@city %>
+	  <%= f.hidden_field :private, :value=>1%>
+	  <%= f.hidden_field :anonymous, :value=>0%>
+	<% end %>
+</div>
+
+
+<div style="display:none">
+	<div id="MailLetter">
+		<div class="mail_label">delivery speed</div>
+
+		<div class="delivery_box box_active">
+			<img src="/assets/pony.png" style="width:166px; height:125px"><br>
+			<b class="delivery_method">Pony Express</b><br>3 days
+		</div>
+
+		<div class="delivery_box">
+			<img src="/assets/stagecoach.png" style="width:182px; height:125px"><br>
+			<b class="delivery_method">Stagecoach</b><br>5 days
+		</div>
+
+		<div class="delivery_box">
+			<img src="/assets/clipper.png" style="width:188px; height:125px"><br>
+			<b class="delivery_method">Clipper Ship</b><br>10 days
+		</div>
+
+		<div style="clear:both"></div>
+
+		<div class="mail_label">privacy</div>
+		<div class="privacy_box box_active">
+			<b class="privacy_option">Private</b><div style="font-size:12px; margin-top:3px;">Only the recipient can view</div>
+		</div>
+		<div class="privacy_box">
+			<b class="privacy_option">Public, Redacted</b><div style="font-size:12px; margin-top:3px;">Strangers may open, if names redacted</div>
+		</div>
+		<div class="privacy_box">
+			<b class="privacy_option">Public</b><div style="font-size:12px; margin-top:3px;">Random people may heart you</div>
+		</div>
+
+		<div style="clear:both"></div>
+		<div class="confirm_send">send letter</div> <div class="cancel" onclick="parent.$.fancybox.close();">cancel</div>
+		<div style="height:300px"></div>
+
+	</div>
+</div>
+
+	
+
+<script type="text/javascript">
+        $(function()
+        {
+			$('#redactor').redactor({
+				focus: true,
+			    air: true,
+			    airButtons: ['formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'link','html'],
+			    formattingTags: ['p', 'blockquote', 'pre'],
+			    placeholder: true,
+			    convertImageLinks: true,
+			    convertVideoLinks: true,
+			    placeholder: 'Start writing...',
+
+			    changeCallback: function(e)
+				{
+					var draft_text = this.get()
+					if (draft_text.length > 7) {
+						$(".send_letter").addClass("send_letter_active")
+					} else {
+						$(".send_letter").removeClass("send_letter_active")
+						setTimeout('$(".save_text").html("");',100);
+					}
+
+       				$.ajax({
+                      type: "POST",
+                      url: "/save_draft",
+                      data: {draft: draft_text },
+                      success: function(msg){
+
+                          $(".save_text").html("Draft saved");
+                      }
+                    });
+				}
+			});
+			$('#redactor').redactor('focus');
+        	<%if current_user.draft && current_user.draft.length > 0%>
+        		$(".send_letter").addClass("send_letter_active")
+        	<%end%>
+
+
+        
+
+			$("a#mailButton").fancybox({
+				'hideOnContentClick': true,
+				'autoDimensions'    : false,
+		        'width'             : 750,
+		        'height'            : 'auto',
+		        'transitionIn'      : 'fade',
+		        'transitionOut'     : 'fade',
+		        'padding' : 0
+			});
+
+
+			  $(".delivery_box").click(function(){
+			  	$(".delivery_box").removeClass("box_active")
+			  	$(this).addClass("box_active");
+			  	var method = $('.delivery_method',$(this)).html();
+			  	$("#letter_delivery_method").val(method)
+			   });
+				
+	 		 $(".privacy_box").click(function(){
+			  	$(".privacy_box").removeClass("box_active")
+			  	$(this).addClass("box_active");
+
+			  	var privacy = $('.privacy_option',$(this)).html();
+			  	if (privacy == "Private") {
+			  		$("#letter_private").val(1);
+			  		$("#letter_anonymous").val(0);
+			  	}
+			  	if (privacy == "Public, Redacted") {
+			  		$("#letter_private").val(0);
+			  		$("#letter_anonymous").val(1);
+			  	}
+			  	if (privacy == "Public") {
+			  		$("#letter_private").val(0);
+			  		$("#letter_anonymous").val(0);
+			  	}
+			   });	
+
+	 		 $(".confirm_send").click(function(){
+			  	$("#new_letter").submit();
+			 });	
+
+
+        });
+
+
+ </script>

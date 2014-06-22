@@ -1,0 +1,9 @@
+<div id="letters" style="margin-top:-30px;">
+
+	<%for letter in @letters%>
+
+		<%=render :partial=>"letters/letter", :locals=>{:letter=>letter}%>
+
+	<%end%>
+
+</div>

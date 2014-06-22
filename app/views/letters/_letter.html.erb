@@ -1,0 +1,26 @@
+<%if letter.receiver_id == current_user.id and letter.delivery_date > Time.now%>
+	<%#maybe add a telepgraph message%>
+<%else%>
+	<%#Frost hard-code hack%>
+	<div class="letterContainer <%if current_user.last_name == "Li"%><%if letter.salutation == "Hi, Nick!"%>my_letter<%end%><%else%><%if current_user.id != letter.receiver_id%>my_letter<%end%><%end%>">
+
+		<div class="letter_content">
+
+			<%if letter.delivery_date > Time.now%>
+				<div class="progress_text"><div class="progress_label">delivery in progress</div>estimated date: <%= letter.delivery_date.strftime("%B %d") %></div>
+			<%end%>
+
+			<div class="stampHolder">
+				<img src="/assets/stamp_pony.png" class="stamp">
+			</div>
+
+			<div class="date"><%=letter.city%><br><%= letter.created_at.strftime("%B %d, %Y") %></div>
+
+			<p><%=letter.salutation%></p>
+
+			<%=raw letter.content%>
+
+		</div>
+
+	</div>
+<%end%>
