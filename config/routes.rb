@@ -16,6 +16,10 @@ Slowmail::Application.routes.draw do
 
    match 'save_draft', to: 'users#save_draft', as: 'save_draft'
 
+   match 'about', to: 'web#about', as: 'about'
+   match 'terms', to: 'web#terms', as: 'terms'
+   match 'privacy', to: 'web#privacy', as: 'privacy'
+
    root :to => 'web#home'
 
    resource :letters

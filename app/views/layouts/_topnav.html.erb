@@ -1,62 +1,73 @@
-<div class="topNav">
-	<div class="toggleSideMenu">
+<%if current_user%>
+	<div class="topNav">
+		<div class="toggleSideMenu">
 
-		<div class="snail"></div>
-		<div class="divider"></div>
+			<div class="snail"></div>
 
-		<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>">
+			<%unless request.path == "/terms" or request.path == "/about" or request.path == "/privacy"%> 
+				<div class="divider"></div>
 
-	
-		<div class="arrow"></div>
+				<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>">
 
-		<%#redo when multiple users: frost hack%>
-		<%if request.path == "/random"%>
-			<img class="avatar randomAvatar" src="/assets/default_photo.png">
-		<%elsif current_user.last_name == "Tommarello"%>
-			<img class="avatar" src="http://graph.facebook.com/li.frost/picture?type=large">
+				<div class="arrow"></div>
+
+				<%#redo when multiple users: frost hack%>
+				<%if request.path == "/random"%>
+					<img class="avatar randomAvatar" src="/assets/default_photo.png">
+				<%elsif current_user.last_name == "Tommarello"%>
+					<img class="avatar" src="http://graph.facebook.com/li.frost/picture?type=large">
+				<%else%>
+					<img class="avatar" src="http://graph.facebook.com/752532342140/picture?type=square">
+				<%end%>
+			<%end%>
+
+		</div>
+
+		<%if request.path == "/draft"%>
+			<a id="mailButton" href="#MailLetter">
+				<div class="send_letter">mail letter</div>
+			</a>
+			<div class="save_text"></div>
 		<%else%>
-			<img class="avatar" src="http://graph.facebook.com/752532342140/picture?type=square">
+			<a href="/draft">
+				<div class="write_letter">write letter</div>
+			</a>
 		<%end%>
-
-
 	</div>
 
-	<%if request.path == "/draft"%>
-		<a id="mailButton" href="#MailLetter">
-			<div class="send_letter">mail letter</div>
-		</a>
-		<div class="save_text"></div>
-	<%else%>
-		<a href="/draft">
-			<div class="write_letter">write letter</div>
-		</a>
-	<%end%>
-</div>
+	<div id="sidr">
+	  	<div class="side-bg">
+	   		<div class="label">letters</div>
 
-<div id="sidr">
-  	<div class="side-bg">
-   		<div class="label">letters</div>
+	   		<a href="/">
+		   		<div class="row">
+			    	<img class="avatar" src="http://graph.facebook.com/752532342140/picture?type=square">
+			    	Nick Tommarello
+			    	<div class="count">1</div>
+		    	</div>
+		    </a>
 
-   		<a href="/">
-	   		<div class="row">
-		    	<img class="avatar" src="http://graph.facebook.com/752532342140/picture?type=square">
-		    	Nick Tommarello
-		    	<div class="count">1</div>
+		    <a href="/random">
+		    	<div class="row diceRow">
+		    		<img class="dice" src="/assets/dice_small.png"> Random
+		    	</div>
+	    	</a>
+	  
+	    	<div class="row" onclick="alert('More users not supported yet.')">
+	    		<div class="fa fa-plus-square-o"></div> Add Person
 	    	</div>
-	    </a>
+	    
+	    	<a href="/logout">
+	    		<div class="signout">sign out</div>
+	    	</a>
 
-	    <a href="/random">
-	    	<div class="row diceRow">
-	    		<img class="dice" src="/assets/dice_small.png"> Random
+	    	<div class="footer_links">
+		    	<a href="/about">about</a>
+		    	<a target="_blank" href="https://trello.com/b/SgTCsTdl/slowmail">trello</a>
+		    	<a href="/privacy">privacy</a>
+		    	<a href="/terms">terms</a>
 	    	</div>
-    	</a>
-  
-    	<div class="row" onclick="alert('More users not supported yet.')">
-    		<div class="fa fa-plus-square-o"></div> Add Person
-    	</div>
-    
-    	<a href="/logout">
-    		<div class="signout">sign out</div>
-    	</a>
-  </div>
-</div>
+
+	  </div>
+	</div>
+<%end%>

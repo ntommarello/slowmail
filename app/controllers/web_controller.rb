@@ -1,6 +1,6 @@
 class WebController < ApplicationController
   
-   before_filter :authenticate, :except => [:home]
+   before_filter :authenticate, :only => [:random]
 
   def home
 
@@ -13,6 +13,13 @@ class WebController < ApplicationController
 
   def random
 
+  end
+
+  def about
+  end
+  def terms
+  end
+  def privacy
   end
 
  

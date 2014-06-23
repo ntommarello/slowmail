@@ -264,6 +264,23 @@ body {
 #sidr {
 
 
+
+  .footer_links {
+  text-align:center;
+  margin-top:13px;
+  font-variant:small-caps;
+    a {
+      color:#AFAFAE;
+      margin-let:5px;
+      margin-right:5px;
+
+      &:hover {
+        color:#fff;
+      }
+    }
+  }
+
+
 	.side-bg {
 	height:100%; width:100%; background-image:url(/assets/sidebackground1.jpg); background-repeat:no-repeat;
 	}
@@ -502,10 +519,10 @@ body {
       margin-top:30px;
       margin-bottom:0px;
     }
-    strong {
-      font-family:'fakt_slab_medium', Helvetica, sans-serif;
-      line-height:1em;
-    }
+    //strong {
+    //  font-family:'fakt_slab_medium', Helvetica, sans-serif;
+    //  line-height:1em;
+   // }
 
     a {
       font-weight:600;
@@ -516,6 +533,10 @@ body {
         color:#4587D4;
 
       }
+    }
+
+    li {
+      margin-top:20px;
     }
 
     .to_button {

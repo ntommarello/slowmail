@@ -1,6 +1,6 @@
 <%#redo when multiple users%>
 <%if current_user.last_name == "Tommarello"%>
-	<%@receiver_id = 1%>
+	<%@receiver_id = 5%>
 	<%@sal = "Hi, Frost!"%>
 <%else%>
 	<%@receiver_id = 4%>
@@ -79,7 +79,7 @@
 			$('#redactor').redactor({
 				focus: true,
 			    air: true,
-			    airButtons: ['formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'link','html'],
+			    airButtons: ['formatting', 'bold', 'italic', 'deleted', 'orderedlist', 'link','html'],
 			    formattingTags: ['p', 'blockquote', 'pre'],
 			    placeholder: true,
 			    convertImageLinks: true,
