@@ -46,6 +46,7 @@ body {
     position: relative;
     display: inline-block;
     background-color: #576fbe;
+
     @include lineargradient(#576fbe, #627DDE);
     border-radius: 3px;
     color: white;
@@ -370,37 +371,51 @@ body {
 
 
 
+.splash {
+  background:#6D5E56;
+}
 .background {
-	background:#B69179;
+	//background:#B69179;
     background-repeat:no-repeat;
     background-position:50% 50%;
     background-position:50% 50% !important;
+    opacity:0;
+      -webkit-transition: opacity .3s ease-out;
+        -moz-transition: opacity .3s ease-out;
+        -ms-transition: opacity .3s ease-out;
+        -o-transition: opacity .3s ease-out;
+        transition: opacity .3s ease-out;
 
-    .content {
-    	color:#fff;
-    	margin-left:80px;
-    	padding-top:80px;
-    	width:600px;
-
-	    h1 {
-	      font-family:'fakt_slab_medium', Helvetica;
-	      margin:0px;
-	      font-size:56px;
-	    }
-	    h2 {
-	    	margin-top:10px;
-	    	font-family:'fakt_slab_light', Helvetica;
-	    	font-size:24px;
-	    	line-height:1.6em;
-	    }
-	    .facebook-login {
-	    	position:absolute;
-	    	margin-top:240px;
-	    }
-    }
+    
 
 
 }
+
+.splash_content {
+      position:absolute;
+      color:#fff;
+      margin-left:80px;
+      padding-top:80px;
+      width:600px;
+      top: 0px;
+
+      h1 {
+        font-family:'fakt_slab_medium', Helvetica;
+        margin:0px;
+        font-size:56px;
+      }
+      h2 {
+        margin-top:10px;
+        font-family:'fakt_slab_light', Helvetica;
+        font-size:24px;
+        line-height:1.6em;
+      }
+      .facebook-login {
+        position:absolute;
+        margin-top:240px;
+      }
+    }
+
 
 
 #letters {

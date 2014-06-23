@@ -6,6 +6,8 @@ class WebController < ApplicationController
 
   	if current_user
   		@letters = Letter.received_or_sent(current_user.id).order_by_date
+  	else
+  		@custom_body_class = "splash"
   	end
   	
   end

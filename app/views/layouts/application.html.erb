@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Super Slow Email</title>
+  <meta name="viewport" content="width=800">
   <link rel="shortcut icon" type="image/png"  href="<%= asset_path 'favicon_snail2.png' %>"/>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <script>
@@ -20,16 +21,13 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %> <%=@custom_body_class%>">
 
 <%if current_user%>
-	
 	<%=render :partial=>"layouts/topnav"%>
-
 <%end%>
 
 <%= yield %>
-
 
 </body>
 </html>
