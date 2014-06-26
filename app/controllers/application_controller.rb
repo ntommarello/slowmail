@@ -3,13 +3,14 @@ class ApplicationController < ActionController::Base
 
 
   before_filter :increment
+  before_filter :check_auto_login_token
 
 
   private
 
   def current_user
 
-    #session[:user_id] = User.find(6)
+    #session[:user_id] = User.find(4)
 
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
 
@@ -31,5 +32,18 @@ class ApplicationController < ActionController::Base
       redirect_to "/"
     end
   end
+
+
+  def check_auto_login_token
+    if params[:auto_login_token]
+      user = User.find_by_auto_login_token(params[:auto_login_token])
+      if user
+        session[:user_id] = user.id
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      end
+    end
+  end
+
+
 
 end

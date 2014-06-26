@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :avatar, :email, :first_name, :last_name, :login_count, :oath_expires_at, :oath_token, :provider, :uid
 
   after_create :set_count
+  
+  before_create :generate_token
 
 
   def self.from_omniauth(auth)
@@ -22,5 +24,17 @@ class User < ActiveRecord::Base
   	self.login_count = 1
   	self.save!
   end
+
+
+
+  protected
+
+  def generate_token
+    self.auto_login_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(auto_login_token: random_token)
+    end
+  end
+
 
 end

@@ -4,9 +4,8 @@ class Letter < ActiveRecord::Base
 
     scope :order_by_date, :order => "created_at desc"
 
-    #get rid of #5 when Frost creates an account
     scope :received_or_sent, (lambda do |user_id| 
-  		{:conditions => ["(author_id = ? or author_id = 5) or (receiver_id = ? or receiver_id = 5)",user_id,user_id]}
+  		{:conditions => ["(author_id = ?) or (receiver_id = ?)",user_id,user_id]}
 	end)
 
 end
