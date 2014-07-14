@@ -13,7 +13,7 @@ app.config(['$routeProvider',
       });
   }]);
 
-app.factory('draftData', function($http) {
+app.factory('draftData', ['$http', function($http) {
    return {
         getDraft: function() {
             return $http.get(window.location+'.json')
@@ -22,13 +22,12 @@ app.factory('draftData', function($http) {
                 });
         }
    }
-});
+}]);
 
 
 
 
 app.controller('DraftCtrl', ['$scope', 'draftData', function($scope, draftData) {
-
     draftData.getDraft().then(function(data) {
     	$scope.data = data
     	$scope.content = data.content
