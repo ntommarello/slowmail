@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sidebar_owner_id: 1
+  display_user_id: 1
+  count_to: 1
+  cc_user_ids: MyString
+  last_letter_id: 1
+  replied: false
+  message_count: 1
+  unread: false
+  last_status_date: 2014-06-29 12:47:55
+
+two:
+  sidebar_owner_id: 1
+  display_user_id: 1
+  count_to: 1
+  cc_user_ids: MyString
+  last_letter_id: 1
+  replied: false
+  message_count: 1
+  unread: false
+  last_status_date: 2014-06-29 12:47:55

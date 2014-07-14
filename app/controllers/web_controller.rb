@@ -5,7 +5,26 @@ class WebController < ApplicationController
   def home
 
   	if current_user
-  		@letters = Letter.received_or_sent(current_user.id).order_by_date
+      @conversations = current_user.conversations.build_sidebar
+      if @conversations and @conversations.count > 0 
+        conversation = @conversations.first
+        if conversation.letter.recipients.length == 1
+          if conversation.letter.author.id == current_user.id
+            url = "/with/#{conversation.letter.recipients[0].username}"
+          else
+            url = "/with/#{conversation.letter.author.username}"
+          end
+        else
+          url = "/with/#{conversation.letter.tag}"
+        end
+      end
+
+      if url
+        redirect_to url
+      else
+        @letters = Letter.find(:all, :conditions=>"id=4")
+      end
+
   	else
   		@custom_body_class = "splash"
   	end
@@ -14,14 +33,19 @@ class WebController < ApplicationController
 
 
   def random
+    @page_title = "Random Letters"
 
   end
 
   def about
+     @page_title = "About superslow.email"
   end
   def terms
+     @page_title = "superslow.email Terms"
   end
+
   def privacy
+     @page_title = "superslow.email Privacy Policy"
   end
 
  

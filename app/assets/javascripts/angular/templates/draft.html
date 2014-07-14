@@ -1,0 +1,18 @@
+<div class="letterContainer" ng-show="showDraft">
+	<div class="letter_content">
+		<div class="date">{{data.city}}<br>{{data.date_written}}</div>
+		<p ng-class="{to_button: reply == true}">{{data.sal}}</p>
+		<textarea id="redactor" ng-model="content"  
+			redactor="{
+				focus: true,
+			    air: true,
+			    airButtons: ['formatting', 'bold', 'italic', 'deleted', 'orderedlist', 'link','html'],
+			    formattingTags: ['p', 'blockquote', 'pre'],
+			    placeholder: true,
+			    convertImageLinks: true,
+			    convertVideoLinks: true,
+			    placeholder: 'Start writing...'
+			}"
+			redactor></textarea>
+	</div>
+</div>

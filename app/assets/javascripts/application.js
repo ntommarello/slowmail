@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
+//= require angular
+//= require angular-route
+//= require angular-redactor
 //= require_tree .

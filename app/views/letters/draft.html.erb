@@ -1,78 +1,71 @@
-<%#redo when multiple users%>
-<%if current_user.last_name == "Tommarello"%>
-	<%@receiver_id = 5%>
-	<%@sal = "Hi, Frost!"%>
-<%else%>
-	<%@receiver_id = 4%>
-	<%@sal = "Hi, Nick!"%>
-<%end%>
-<%@city = "San Francisco"%>
-<%@letter = Letter.new%>
+<div ng-app="slowmail">
 
+	<%#redo when multiple users%>
 
-<div id="author">
-	<div class="letterContainer">
-		<div class="letter_content">
-			<div class="date"><%=@city%><br><%= Time.now.strftime("%B %d, %Y") %></div>
-			  <p onclick="alert('More users not supported yet!')" class="to_button"><%=@sal%></p>
-			 <textarea id="redactor" name="redactor"><%=current_user.draft%></textarea>
+	<div id="author" ng-view>
+		<div class="letterContainer">
+			<div class="letter_content">
+				<div class="date"><%=@city%><br><%= Time.now.strftime("%B %d, %Y") %></div>
+				  <p onclick="alert('More users not supported yet!')" class="to_button"><%=@sal%></p>
+				 <textarea id="redactor" name="redactor"><%=current_user.draft%></textarea>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="hiddenForm" style="display:none">
-	<%= form_for @letter do |f| %>
-	  <%= f.hidden_field :receiver_id, :value=>@receiver_id %>
-	  <%= f.hidden_field :salutation, :value=>@sal %> %>
-	  <%= f.hidden_field :delivery_method, :value=>"Pony Express" %>
-	  <%= f.hidden_field :city, :value=>@city %>
-	  <%= f.hidden_field :private, :value=>1%>
-	  <%= f.hidden_field :anonymous, :value=>0%>
-	<% end %>
-</div>
-
-
-<div style="display:none">
-	<div id="MailLetter">
-		<div class="mail_label">delivery speed</div>
-
-		<div class="delivery_box box_active">
-			<img src="/assets/pony.png" style="width:166px; height:125px"><br>
-			<b class="delivery_method">Pony Express</b><br>3 days
-		</div>
-
-		<div class="delivery_box">
-			<img src="/assets/stagecoach.png" style="width:182px; height:125px"><br>
-			<b class="delivery_method">Stagecoach</b><br>5 days
-		</div>
-
-		<div class="delivery_box">
-			<img src="/assets/clipper.png" style="width:188px; height:125px"><br>
-			<b class="delivery_method">Clipper Ship</b><br>10 days
-		</div>
-
-		<div style="clear:both"></div>
-
-		<div class="mail_label">privacy</div>
-		<div class="privacy_box box_active">
-			<b class="privacy_option">Private</b><div style="font-size:12px; margin-top:3px;">Only the recipient can view</div>
-		</div>
-		<div class="privacy_box">
-			<b class="privacy_option">Public, Redacted</b><div style="font-size:12px; margin-top:3px;">Strangers may open, if names redacted</div>
-		</div>
-		<div class="privacy_box">
-			<b class="privacy_option">Public</b><div style="font-size:12px; margin-top:3px;">Random people may heart you</div>
-		</div>
-
-		<div style="clear:both"></div>
-		<div class="confirm_send">send letter</div> <div class="cancel" onclick="parent.$.fancybox.close();">cancel</div>
-		<div style="height:300px"></div>
-
+	<div class="hiddenForm" style="display:none">
+		<%= form_for @letter, :url => "/mail_letter"  do |f| %>
+		  <%= f.hidden_field :id, :value=>@letter.id %> %>
+		  <%= f.hidden_field :delivery_method, :value=>"Pony Express" %>
+		  <%= f.hidden_field :private, :value=>1%>
+		  <%= f.hidden_field :anonymous, :value=>0%>
+		  <input type="hidden" id="receiver_id" name="receiver_id" value="<%=@receiver_id.join(",")%>">
+		<% end %>
 	</div>
-</div>
 
-<%if current_user.draft && current_user.draft.length > 0%>
-<script>
-$(".send_letter").addClass("send_letter_active")
-</script>
- <%end%>
+
+	<div style="display:none">
+		<div id="MailLetter">
+			<div class="mail_label">delivery speed</div>
+
+			<div class="delivery_box box_active">
+				<img src="/assets/pony.png" style="width:166px; height:125px"><br>
+				<b class="delivery_method">Pony Express</b><br>3 days
+			</div>
+
+			<div class="delivery_box">
+				<img src="/assets/stagecoach.png" style="width:182px; height:125px"><br>
+				<b class="delivery_method">Stagecoach</b><br>5 days
+			</div>
+
+			<div class="delivery_box">
+				<img src="/assets/clipper.png" style="width:188px; height:125px"><br>
+				<b class="delivery_method">Clipper Ship</b><br>10 days
+			</div>
+
+			<div style="clear:both"></div>
+
+			<div class="mail_label">privacy</div>
+			<div class="privacy_box box_active">
+				<b class="privacy_option">Private</b><div style="font-size:12px; margin-top:3px;">Only the recipient can view</div>
+			</div>
+			<div class="privacy_box">
+				<b class="privacy_option">Public, Redacted</b><div style="font-size:12px; margin-top:3px;">Strangers may open, if names redacted</div>
+			</div>
+			<div class="privacy_box">
+				<b class="privacy_option">Public</b><div style="font-size:12px; margin-top:3px;">Random people may heart you</div>
+			</div>
+
+			<div style="clear:both"></div>
+			<div class="confirm_send">send letter</div> <div class="cancel" onclick="parent.$.fancybox.close();">cancel</div>
+			<div style="height:300px"></div>
+
+		</div>
+	</div>
+
+	<%if current_user.draft && current_user.draft.length > 0%>
+	<script>
+	$(".send_letter").addClass("send_letter_active")
+	</script>
+	 <%end%>
+</div>
+</div>

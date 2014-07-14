@@ -1,61 +1,164 @@
 <%if current_user%>
 	<div class="topNav">
 		<div class="toggleSideMenu">
-			<div class="snail"></div>
-			<%unless request.path == "/terms" or request.path == "/about" or request.path == "/privacy"%> 
-				<div class="divider"></div>
-				<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>">
-				<div class="arrow"></div>
-				<%#redo when multiple users: frost hack%>
-				<%if request.path == "/random"%>
-					<img class="avatar randomAvatar" src="/assets/default_photo.png">
-				<%elsif current_user.last_name == "Tommarello"%>
-					<img class="avatar" src="http://graph.facebook.com/li.frost/picture?type=large">
-				<%else%>
-					<img class="avatar" src="http://graph.facebook.com/752532342140/picture?type=square">
+			<%if current_user%>
+				<%message_count = Conversation.total_new_messages_for_user(current_user).count%>
+				<%if message_count > 0%>
+					<div class="unread_messages"><%=message_count%></div>
 				<%end%>
 			<%end%>
+			<div class="snail">
+				
+			</div>
+
+
+				<%if request.path == "/random"%>
+				     <%#refactor when random built from db%>
+					<div class="divider"></div>
+					<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>">
+					<div class="arrow"></div>
+					<img class="avatar randomAvatar" src="/assets/default_photo.png">
+				<%elsif @letters and @letters.length > 0%>
+					<div class="divider"></div>
+					<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>">
+					<div class="arrow"></div>
+					<%for avatar in @letters[0].writing_partners(current_user)%>
+						<img class="avatar" style="float:left; margin-right:10px" src="<%=avatar%>">
+					<%end%>
+				<%end%>
+
 		</div>
 
-		<%if request.path == "/draft"%>
+		<%if @draft_in_progress%>
 			<a id="mailButton" href="#MailLetter">
 				<div class="send_letter">mail letter</div>
 			</a>
 			<div class="save_text"></div>
 		<%else%>
+
+			<%number_buttons = 1%>
+			<%if @letters and @letters.length > 0%>
+				<a href="<%=request.path%>/reply">
+					<div class="write_letter">reply</div>
+				</a>
+				<%number_buttons = 2%>
+			<%end%>
+
 			<a href="/draft">
-				<div class="write_letter">write letter</div>
+				<div class="write_letter <%if number_buttons == 2%>new_letter<%end%>">new letter</div>
 			</a>
+
 		<%end%>
 	</div>
 
 	<div id="sidr">
 	  	<div class="side-bg">
-	   		<div class="label">letters</div>
-	   		<a href="/">
-		   		<div class="row">
-			    	<img class="avatar" src="http://graph.facebook.com/752532342140/picture?type=square">
-			    	Nick Tommarello
-			    	<div class="count">2</div>
-		    	</div>
-		    </a>
-		    <a href="/random">
-		    	<div class="row diceRow">
-		    		<img class="dice" src="/assets/dice_small.png"> Random
-		    	</div>
-	    	</a>
-	    	<div class="row" onclick="alert('More users not supported yet.')">
-	    		<div class="fa fa-plus-square-o"></div> Add Person
+
+	  		<div style="background:#333; width:100%; padding-bottom:20px; padding-top:5px">
+		   		<div class="label" style="display:none">letters</div>
+
+
+
+
+		   		<%@conversations = current_user.conversations.build_sidebar%>
+		   		<%for conversation in @conversations%>
+		   			<%if conversation.letter %>
+			   			<%if  conversation.letter.recipients.length == 1%>
+			   				<%if conversation.letter.author.id == current_user.id%>
+					   			<%name = "#{conversation.letter.recipients[0].first_name} #{conversation.letter.recipients[0].last_name}" %> 
+					   			<%url = "/with/#{conversation.letter.recipients[0].username}"%>
+					   			<%avatar = "<img class='avatar' src='#{conversation.letter.recipients[0].avatar}''>" %>
+			   				<%else%>
+					   			<%name = "#{conversation.letter.author.first_name} #{conversation.letter.author.last_name}" %> 
+					   			<%url = "/with/#{conversation.letter.author.username}"%>
+					   			<%avatar = "<img class='avatar' src='#{conversation.letter.author.avatar}''>" %>
+				   			<%end%>
+				   		<%else%>
+				   		
+				   				<%name = conversation.format_multiple_names(current_user)%>
+				   				<%url = "/with/#{conversation.letter.tag}"%>
+				   				<%avatar = conversation.format_multiple_avatars(current_user)%>
+
+
+				   		<%end%>
+
+				   		<a href="<%=url%>">
+					   		<div class="row">
+					   			<%=raw avatar%>
+						    	<div class="info"><%=name%></div>
+						    	<div class="count <%if conversation.unread%>unread<%end%>">
+						    	<%if conversation.letter.author.id == current_user.id%>
+						    		<span class="fa fa-reply" style="color:#333"></span>
+						    	<%elsif conversation.unread%>
+						    		<span class="fa fa-envelope"></span>
+						    	<%else%>
+						    		<%=conversation.message_count%>
+						    	<%end%>
+						    	</div>
+						    	<div style="clear:both"></div>
+					    	</div>
+					    </a>
+					 <%end%>
+
+		   		<%end%>
+
+		   		<%if @conversations.length == 0%>
+					<a href="/">
+				   		<div class="row">
+					    	<img class='avatar' src='http://graph.facebook.com/752532342140/picture?type=square'>
+					    	<div class="info">Welcome</div>
+					    	<div class="count">1</div>
+					    	<div style="clear:both"></div>
+				    	</div>
+				    </a>
+		   		<%end%>
+
+
+				<%if current_user.active_drafts.length > 0%>
+					<a href="/my_drafts">
+						<div class="row">
+				    		<div class="random_button"><div class="fa fa-file-text-o"></div></div> 
+				    		<%if current_user.active_drafts.length == 1%>
+				    			Draft
+				    		<%else%>
+				    			Drafts 
+				    			<div class="count"><%=current_user.active_drafts.length%></div>
+				    		<%end%>
+
+				    	</div>  
+				    </a> 
+			    <%end%>
+		   
+				    <a href="/random">
+				    	<div class="row diceRow">
+				    		<div class="random_button">
+				    		<img class="dice" src="/assets/dice_small.png">
+				    		</div> Random
+				    	</div>
+			    	</a>
+			    	<div class="row" onclick="alert('More users not supported yet.')">
+			    		<div class="random_button"><div class="fa fa-file-text-o"></div></div> Groups
+			    	</div>
+
+
+
+		    		
+		    		<div style="clear:both"></div>
 	    	</div>
-	    	<a href="/logout">
-	    		<div class="signout">sign out</div>
-	    	</a>
-	    	<div class="footer_links">
-		    	<a href="/about">about</a>
-		    	<a target="_blank" href="https://trello.com/b/SgTCsTdl/slowmail">trello</a>
-		    	<a href="/privacy">privacy</a>
-		    	<a href="/terms">terms</a>
-	    	</div>
+
+	    	<div style="clear:both"></div>
+	    	<div style="position:absolute; bottom:20px; margin-left:35px">
+	    	<img class="current_user_avatar" src="<%=current_user.avatar.gsub("square","large")%>">
+		    	<a href="/logout">
+		    		<div class="signout">sign out</div>
+		    	</a>
+		    	<div class="footer_links">
+			    	<a href="/about">about</a>
+			    	<a target="_blank" href="https://trello.com/b/SgTCsTdl/slowmail">trello</a>
+			    	<a href="/privacy">privacy</a>
+			    	<a href="/terms">terms</a>
+		    	</div>
+		    </div>
 	  	</div>
 	</div>
 <%end%>

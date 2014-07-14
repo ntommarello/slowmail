@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  creator_id: 1
+  name: MyString
+  tagline: MyString
+  avatar: MyString
+  description: MyText
+  privacy_invite_only: false
+  privacy_members_only_view: false
+
+two:
+  creator_id: 1
+  name: MyString
+  tagline: MyString
+  avatar: MyString
+  description: MyText
+  privacy_invite_only: false
+  privacy_members_only_view: false

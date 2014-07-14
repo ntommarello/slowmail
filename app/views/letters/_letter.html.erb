@@ -1,13 +1,33 @@
-<%if current_user and letter.receiver_id == current_user.id and letter.delivery_date > Time.now%>
+<%author = false%>
+<%if current_user and letter.author%>
+	<%if letter.author.id == current_user.id%>
+		<%author = true%>
+	<%end%>
+<%end%>
+
+
+<%if current_user and letter.delivery_date > Time.now and !author%>
 	<%#maybe add a telepgraph message%>
 <%else%>
-	<%#Frost hard-code hack%>
-	<div class="letterContainer <%if current_user%><%if current_user.last_name == "Li"%><%if letter.salutation == "Hi, Nick!"%>my_letter<%end%><%else%><%if current_user.id != letter.receiver_id%>my_letter<%end%><%end%><%end%>">
+
+	<div class="letterContainer <%if author%>my_letter<%end%>">
 
 		<div class="letter_content">
 
 			<%if letter.delivery_date > Time.now%>
-				<div class="progress_text"><div class="progress_label">delivery in progress</div>estimated date: <%= letter.delivery_date.strftime("%B %d") %></div>
+				<div class="progress_text">
+					<div class="progress_label">
+						delivery in progress
+					</div>
+					estimated: <%= letter.delivery_date.strftime("%B %d") %> 
+
+					<%if current_user and current_user.admin%>
+						<a class="fa fa-edit"></a>
+						<%= link_to '', letter_path(letter), :confirm => 'Are you sure you want to delete this letter?', :class=>"fa fa-times-circle", :method => :delete %>
+						<%= link_to '', "/letter/#{letter.id}/deliver_now", :target=>"_blank", :confirm => 'Are you sure you want to deliver this letter?', :class=>"fa fa-plane" %>
+					<%end%>
+
+				</div>
 			<%end%>
 
 			<%if letter.delivery_method%>
@@ -16,7 +36,7 @@
 				</div>
 			<%end%>
 
-			<div class="date"><%=letter.city%><br><%= letter.created_at.strftime("%B %d, %Y") %></div>
+			<div class="date"><%=letter.city%><br><%= letter.mailed_at.strftime("%B %d, %Y") %></div>
 
 			<%if letter.subject%>
 				<br><br><p><b>Re: <%=letter.subject%></b></p>

@@ -1,0 +1,26 @@
+
+<div class="letterContainer">
+	<div class="letter_content">
+
+		<h1 style="text-align:center">My Drafts</h1>
+			<div class="drafts">
+			<%for draft in @drafts%>
+				<a href="<%=draft.tag%>">
+					<div class="draft_row">
+						<%for avatar in draft.writing_partners(current_user)%>
+							<img class="avatar" style="float:left; margin-right:10px" src="<%=avatar%>">  
+						<%end%>
+
+						<div style="line-height:44px">
+						<%if draft.recipients.count > 0%>
+							<%=draft.writing_partner_names(current_user)%>
+						<%else%>
+							Untitled Draft
+						<%end%>
+						</div>
+					</div>
+				</a>
+			<%end%>
+		</div>
+	</div>
+</div>

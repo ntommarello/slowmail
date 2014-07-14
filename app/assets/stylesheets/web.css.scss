@@ -17,6 +17,7 @@ body {
   font-size:16px;
   -webkit-font-smoothing: antialiased;
 }
+
 .footer {
   height:100px;
 }
@@ -129,13 +130,24 @@ body {
   width:100%;
   height:100px;
 
-
+  .avatar {
+      height:44px;
+      width:44px;
+      border-radius:35px;
+      float:left;
+      border:2px solid #fff;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
  
   .toggleSideMenu {
     float:left;
     padding:10px;
     cursor:pointer;
     border-bottom-right-radius:3px;
+
+    .unread_messages {
+      z-index:100; margin-left:25px; color:white; background:#DB6D00; border-radius:12px; width:24px; height:24px; text-align:center; line-height:24px; position:absolute; margin-top:32px;
+    }
 
     &:hover {
        background:#eee;
@@ -163,14 +175,15 @@ body {
     background-size:13px 8px;
   }
 
+
   .avatar {
-	    height:44px;
-	    width:44px;
-	    border-radius:35px;
-	    float:left;
-	    border:2px solid #fff;
-	    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-	  }
+      height:44px;
+      width:44px;
+      border-radius:35px;
+      float:left;
+      border:2px solid #fff;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
 
 	 .fa {
 	   float:left;
@@ -209,6 +222,20 @@ body {
       background:#f8f8f8;
     }
 	}
+
+  .new_letter {
+    border:1px solid #aaa;
+    color:#999;
+
+    &:hover {
+      border:1px solid #57ad68;
+      color:#57ad68;
+    }
+    &:active {
+      background:#f8f8f8;
+      color:#57ad68;
+    }
+  }
 
 
   .send_letter {
@@ -265,7 +292,6 @@ body {
 #sidr {
 
 
-
   .footer_links {
   text-align:center;
   margin-top:13px;
@@ -295,45 +321,133 @@ body {
 	}
 
 	.avatar {
-	 	height:30px;
-	    width:30px;
-	    border-radius:15px;
+	 	height:44px;
+	    width:44px;
+	    border-radius:22px;
 	    float:left;
 	    margin-right:10px;
 	    margin-left:10px;
-	    margin-top:7px;
 	}
+
+
+
+     .random_button {
+        margin-left:10px;
+        height:44px;
+        width:44px;
+  
+        color:#AFAFAE;
+        font-variant:small-caps;
+        text-decoration:none;
+        text-align:center;
+        background:rgba(0,0,0,.2);
+        border-radius:30px;
+        float:left;
+          margin-right:10px;
+      margin-left:10px;
+     }
+
+    .current_user_avatar {
+      width:100px;
+      height:100px;
+      border:5px solid #333;
+      border-radius:60px;
+      margin-left:38px;
+      margin-right:auto;
+      margin-top:50px;
+  }
+
+
+  .multiple_avatars {
+      float:left; 
+
+      .a_left {
+        background-color:rgba(0,0,0,.2);
+        position:absolute; height:44px; width:22px; border-top-left-radius:22px; border-bottom-left-radius:22px;  background-size:44px 44px;  background-repeat:none;  border:1px solid #333;
+      }
+      .a_right {
+        background-color:rgba(0,0,0,.2);
+        position:absolute; margin-left:22px;height:44px; width:22px; border-top-right-radius:22px; border-bottom-right-radius:22px; background-size:44px 44px; background-repeat:none;
+        border:1px solid #333;
+      }
+      .a_top_right {
+        background-color:rgba(0,0,0,.2);
+        position:absolute; margin-left:22px;height:22px; width:22px; border-top-right-radius:22px; background-size:30px 30px; background-repeat:none;
+        border:1px solid #333;
+      }
+      .a_bottom_right {
+        background-color:rgba(0,0,0,.2);
+        position:absolute; margin-left:22px;height:22px; margin-top:22px; width:22px; border-bottom-right-radius:22px; background-size:30px 30px; background-repeat:none;
+        border:1px solid #333;
+      }
+
+      .a_top_left {
+        background-color:rgba(0,0,0,.2);
+        position:absolute; height:22px; width:22px; border-top-left-radius:22px; background-size:30px 30px; background-repeat:none;
+        border:1px solid #333;
+      }
+      .a_bottom_left {
+        background-color:rgba(0,0,0,.2);
+        position:absolute; height:22px; margin-top:22px; width:22px; border-bottom-left-radius:22px; background-size:30px 30px; background-repeat:none;
+        border:1px solid #333;
+      }
+
+    }
+
+
+
 	.dice {
-		width:25px; height:25px; border-radius:0px; margin-right:13px; margin-left:13px; margin-top:9px; float:left; opacity:.6;
+		width:26px; height:26px; border-radius:0px;  margin-left:10px; margin-top:9px; float:left; opacity:.5;
 	}
-	.fa {
+	.fa-file-text-o {
 	  float:left;
-	  margin-right:13px;
 	  margin-left:13px;
-	  margin-top:7px;
-	  font-size:32px;
+	  margin-top:11px;
+	  font-size:23px;
+
+    &:hover {
+      color:white;
+    }
 	}
 	.row {
-		height:40px; line-height:40px; width:100%; cursor:pointer; color:#AFAFAE;
+		height:44px; line-height:44px; width:100%; cursor:pointer; color:#AFAFAE; margin-top:10px;
 
 		.count {
 		  float:right;
-		  width:20px;
-		  height:20px;
-		  line-height:20px;
+		  width:22px;
+		  height:22px;
+		  line-height:22px;
 		  font-size:12px;
 		  margin-right:15px;
-		  border-radius:10px;
+		  border-radius:12px;
 		  background:rgba(255,255,255,.3);
 		  text-align:center;
 		  color:#000;
-		  margin-top:11px;
+		  margin-top:10px;
 		  font-family:helvetica;
 		}
+
+    .info {
+      float:left; line-height:42px; margin-top:0px;
+      .date {
+        font-size:12px; color:rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    .unread {
+      background:#DB6D00;
+      color:#FFE5B5;
+      font-size:12px;
+    }
+
 
 
 		&:hover {
 		  color:#fff;
+
+      .fa-file-text-o {
+        color:#fff;
+      }
 		}
 	}
 
@@ -341,6 +455,8 @@ body {
 	  text-decoration:none;
 
 	}
+
+
 	.signout {
 	  width:125px;
 	  margin-left:auto;
@@ -353,7 +469,7 @@ body {
 	  cursor:pointer;
 	  border:1px solid rgba(255,255,255,.4);
 	  color:#AFAFAE;
-	  margin-top:40px;
+	  margin-top:10px;
 	  font-variant:small-caps;
 	  text-decoration:none;
 	  text-align:center;
@@ -519,6 +635,18 @@ body {
     color:#222;
     //-webkit-font-smoothing: none;
     //letter-spacing:.005rem;
+
+
+    .fa {
+      color:#aaa;
+      cursor:pointer;
+      text-decoration:none;
+      font-weight:100;
+
+      &:hover {
+        color:#000;
+      }
+    }
 
 
     .progress_text {
@@ -859,3 +987,25 @@ body {
   background:#fcfcfc;
 }
 
+.drafts {
+      a {
+        text-decoration:none;
+      }
+  .avatar {
+      height:44px;
+      width:44px;
+      border-radius:35px;
+      float:left;
+      border:2px solid #fff;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
+
+   .draft_row {
+      padding:10px; border-bottom:1px solid #f8f8f8; margin-top:10px; margin-bottom:10px; cursor:pointer;
+
+      &:hover {
+        background:#eee;
+      }
+
+   } 
+  }

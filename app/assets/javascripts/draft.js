@@ -3,7 +3,7 @@
 
          if ($('.draft') ) {
 
-			$('#redactor').redactor({
+			/*$('#redactor').redactor({
 				focus: true,
 			    air: true,
 			    airButtons: ['formatting', 'bold', 'italic', 'deleted', 'orderedlist', 'link','html'],
@@ -28,14 +28,13 @@
                       url: "/save_draft",
                       data: {draft: draft_text },
                       success: function(msg){
-
                           $(".save_text").html("Draft saved");
                       }
                     });
 				}
 			});
 			$('#redactor').redactor('focus');
-
+*/
 
 
         
@@ -49,7 +48,6 @@
 		        'transitionOut'     : 'fade',
 		        'padding' : 0
 			});
-
 
 			  $(".delivery_box").click(function(){
 			  	$(".delivery_box").removeClass("box_active")
@@ -78,9 +76,14 @@
 			   });	
 
 	 		 $(".confirm_send").click(function(){
-			  	$("#new_letter").submit();
+			  	$(".edit_letter").submit();
 			 });	
 
 	 		}
 
         });
+
+
+
+
+

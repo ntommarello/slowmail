@@ -1,24 +1,17 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery
-
+  protect_from_forgery
 
   before_filter :increment
   before_filter :check_auto_login_token
+  helper_method :current_user
 
 
   private
 
   def current_user
-
     #session[:user_id] = User.find(4)
-
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-
- 
-    
-
   end
-  helper_method :current_user
 
   def increment
   	if current_user
@@ -33,7 +26,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def check_auto_login_token
     if params[:auto_login_token]
       user = User.find_by_auto_login_token(params[:auto_login_token])
@@ -43,7 +35,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
 
 
 end
