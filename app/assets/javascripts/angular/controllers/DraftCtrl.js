@@ -24,7 +24,11 @@ app.factory('draftData', function($http) {
    }
 });
 
-app.controller('DraftCtrl', function($scope, draftData) {
+
+
+
+app.controller('DraftCtrl', ['$scope', 'draftData', function($scope, draftData) {
+
     draftData.getDraft().then(function(data) {
     	$scope.data = data
     	$scope.content = data.content
@@ -59,5 +63,5 @@ app.controller('DraftCtrl', function($scope, draftData) {
 		 $scope.$watch('content', saveUpdates)
 
     });
-});
+}]);
 
