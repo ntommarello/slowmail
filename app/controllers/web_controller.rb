@@ -8,14 +8,16 @@ class WebController < ApplicationController
       @conversations = current_user.conversations.build_sidebar
       if @conversations and @conversations.count > 0 
         conversation = @conversations.first
-        if conversation.letter.recipients.length == 1
+        if conversation.letter and conversation.letter.recipients.length == 1
           if conversation.letter.author.id == current_user.id
             url = "/with/#{conversation.letter.recipients[0].username}"
           else
             url = "/with/#{conversation.letter.author.username}"
           end
         else
-          url = "/with/#{conversation.letter.tag}"
+          if conversation.letter
+            url = "/with/#{conversation.letter.tag}"
+          end
         end
       end
 

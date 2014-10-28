@@ -29,6 +29,7 @@ end
 
 gem 'jquery-rails'
 gem 'jbuilder'
+gem 'send_with_us'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

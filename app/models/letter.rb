@@ -151,6 +151,16 @@ class Letter < ActiveRecord::Base
       self.delivered = true
       self.save!
       self.update_sidebar_for_reader
+
+      for recipient in self.recipients
+        begin
+          result = SendWithUs::Api.new.send_with('tem_Es7Dmca87rdSgMSoUJp8SJ', { address: recipient.email }, { company_name: 'TestCo' })
+          puts result
+        rescue => e
+          puts "Error - #{e.class.name}: #{e.message}"
+        end
+      end
+
   end
 
 
