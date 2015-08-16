@@ -11,27 +11,34 @@
 }
 
 
+
+
 .another_envelope {
-  max-width:600px; height:200px; border:3px dashed #eee;
+   background:repeating-linear-gradient(-45deg, #EFC1CB , #EFC1CB 30px, #F2F2F2 30px, #F2F2F2 40px, #C2E8F5 40px, #C2E8F5 70px,#F2F2F2 70px, #F2F2F2 80px);
+  
   margin-left:auto;
   margin-right:auto;
-  padding:70px;
-  background:white;
+
+
   position:relative;
   outline:6px solid #fff;
-  border-radius:3px;
+  border-radius:4px;
+  width:720px;
+  height:320px;
+  padding-top:1px;
 
-  box-shadow:
-  0 0 0 1px #CCC,
-  0 0 0 2px #888,
-  0 0 0 3px #444,
-  0 0 0 4px #000;
--webkit-shadow:
-  0 0 0 1px #CCC,
-  0 0 0 2px #888,
-  0 0 0 3px #444,
-  0 0 0 4px #000;
 
+
+  .inner {
+    margin:10px;
+    background:white;
+    
+    padding:50px;
+     width:600px; 
+     height:200px;
+     border-radius:4px;
+
+  }
 
   .stamp {
     width:75px;

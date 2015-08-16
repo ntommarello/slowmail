@@ -3,25 +3,28 @@
 <div style="clear:both; height:80px;"></div>
 
 
-<div class="another_envelope two-colors">
+<div class="another_envelope">
 
-<img class="stamp" src="http://www.philatelicdatabase.com/wp-content/uploads/2012/09/stamp-italy-centenary-of-albert-einstein-1979.jpg">
+	<div class="inner">
 
 
-	<div class="return_address">
-		<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>"> <div class="name"><%=current_user.first_name%>  <%=current_user.last_name%> <br>San Francisco CA</div>
-		<div style="clear:both"></div>
+		<img class="stamp" src="http://www.philatelicdatabase.com/wp-content/uploads/2012/09/stamp-italy-centenary-of-albert-einstein-1979.jpg">
+
+
+		<div class="return_address">
+			<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>"> <div class="name"><%=current_user.first_name%>  <%=current_user.last_name%> <br>San Francisco CA</div>
+			<div style="clear:both"></div>
+		</div>
+
+
+		<div class="to_address">
+
+			<input class="dotted" placeholder="Full Name">
+			<br>
+			<input class="dotted" placeholder="Email">
+
+		</div>
 	</div>
-
-
-	<div class="to_address">
-
-		<input class="dotted" placeholder="Full Name">
-		<br>
-		<input class="dotted" placeholder="Email">
-
-	</div>
-
 
 </div>
 
