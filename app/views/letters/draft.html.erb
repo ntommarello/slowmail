@@ -2,6 +2,10 @@
 
 	<%#redo when multiple users%>
 
+
+
+
+
 	<div id="author" ng-view>
 		<div class="letterContainer">
 			<div class="letter_content">
@@ -24,7 +28,41 @@
 
 
 	<div style="display:none">
+
 		<div id="MailLetter">
+
+		<div class="mail_label" style="margin-top:30px">address</div>
+
+		<div style="float:left">
+			<div class="another_envelope" >
+
+				<div class="inner">
+
+
+					<img class="stamp" src="http://www.philatelicdatabase.com/wp-content/uploads/2012/09/stamp-italy-centenary-of-albert-einstein-1979.jpg">
+
+
+					<div class="return_address">
+						<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>"> <div class="name"><%=current_user.first_name%>  <%=current_user.last_name%> <br>San Francisco CA</div>
+						<div style="clear:both"></div>
+					</div>
+
+
+					<div class="to_address">
+
+						<input class="dotted" placeholder="Full Name">
+						<br>
+						<input class="dotted" placeholder="City & State">
+
+					</div>
+				</div>
+
+			</div>
+
+			</div>
+
+			<div style="clear:both"></div>
+
 			<div class="mail_label">delivery speed</div>
 
 			<div class="delivery_box box_active">
