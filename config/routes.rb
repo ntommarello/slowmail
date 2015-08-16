@@ -1,8 +1,5 @@
 Slowmail::Application.routes.draw do
 
-
-
-
    match 'auth/:provider/callback', to: 'sessions#create'
    match 'auth/failure', to: redirect('/')
    match 'logout', to: 'sessions#destroy', as: 'logout'
@@ -24,7 +21,15 @@ Slowmail::Application.routes.draw do
 
    match '/letter/:id/deliver_now', to: 'letters#deliver_now'
 
+
+   match 'envelope', to: 'web#envelope', as: 'envelope'
+
+
    root :to => 'web#home'
+
+
+
+
 
    resources :letters
 

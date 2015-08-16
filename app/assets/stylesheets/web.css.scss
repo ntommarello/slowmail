@@ -4,6 +4,84 @@
 
 @import 'mixins';
 
+:focus {outline:none;}
+
+.envelope {
+  background:#f9f9f9;
+}
+
+
+.another_envelope {
+  max-width:600px; height:200px; border:3px dashed #eee;
+  margin-left:auto;
+  margin-right:auto;
+  padding:70px;
+  background:white;
+  position:relative;
+  outline:6px solid #fff;
+  border-radius:3px;
+
+  box-shadow:
+  0 0 0 1px #CCC,
+  0 0 0 2px #888,
+  0 0 0 3px #444,
+  0 0 0 4px #000;
+-webkit-shadow:
+  0 0 0 1px #CCC,
+  0 0 0 2px #888,
+  0 0 0 3px #444,
+  0 0 0 4px #000;
+
+
+  .stamp {
+    width:75px;
+    position:absolute;
+    right:20px;
+    top:20px;
+  }
+
+  .return_address {
+    margin-top: -40px;
+    margin-left: -40px;
+
+    .avatar {
+      border-radius:500px;
+      width:60px;
+      float:left;
+    }
+    .name {
+      float:left; margin-left:10px;
+      font-weight:bold;
+      color:#777;
+      margin-left:10px;
+      margin-top:10px;
+      line-height:1.3em;
+    }
+  }
+
+  .to_address {
+    width:300px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 65px;
+
+
+    .dotted {
+      padding:5px;
+      border:0px;
+      border-bottom:1px dashed #ddd;
+      font-size:16px;
+      margin:10px;
+      width:300px;
+    }
+
+  }
+}
+
+
+
+
+
 
 html, body {
     height:100%;

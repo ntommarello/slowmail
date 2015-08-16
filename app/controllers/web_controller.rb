@@ -34,6 +34,14 @@ class WebController < ApplicationController
   end
 
 
+
+
+
+  def envelope
+
+  end
+
+
   def random
     @page_title = "Random Letters"
 
