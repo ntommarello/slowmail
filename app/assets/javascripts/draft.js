@@ -49,11 +49,36 @@
 		        'padding' : 0
 			});
 
+
+
+		    $(".send_to").keydown(function() {
+		    	console.log("asdasd")
+		     	var client = algoliasearch('XNNH9JSUXG', 'eb5146ae03c021a316d2cb08a06dbdda');
+				  var index = client.initIndex('User');
+
+				  index.search($(this).val(), function searchDone(err, content) {
+				    console.log(err, content)
+				  });
+		    });
+
+
 			  $(".delivery_box").click(function(){
 			  	$(".delivery_box").removeClass("box_active")
 			  	$(this).addClass("box_active");
 			  	var method = $('.delivery_method',$(this)).html();
 			  	$("#letter_delivery_method").val(method)
+			   });
+
+			  $(".stamp1").click(function(){
+            $(".stamp").attr("src","link")
+            $(".stamp").css("width","90px")
+
+			   });
+			  $(".stamp2").click(function(){
+             $(".stamp").attr("src","link")
+			   });
+			  $(".stamp3").click(function(){
+             $(".stamp").attr("src","link")
 			   });
 				
 	 		 $(".privacy_box").click(function(){

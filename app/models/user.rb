@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   before_create :generate_token
   before_create :generate_username
 
+   include AlgoliaSearch
+
+    algoliasearch do
+      attribute :first_name, :last_name, :email
+    end
 
 
 

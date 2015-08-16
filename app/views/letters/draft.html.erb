@@ -5,7 +5,6 @@
 
 
 
-
 	<div id="author" ng-view>
 		<div class="letterContainer">
 			<div class="letter_content">
@@ -31,32 +30,23 @@
 
 		<div id="MailLetter">
 
-		<div class="mail_label" style="margin-top:30px">address</div>
+		<script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
 
+		<div class="mail_label" style="margin-top:30px">address</div>
 		<div style="float:left">
 			<div class="another_envelope" >
-
 				<div class="inner">
-
-
 					<img class="stamp" src="http://www.philatelicdatabase.com/wp-content/uploads/2012/09/stamp-italy-centenary-of-albert-einstein-1979.jpg">
-
-
 					<div class="return_address">
 						<img class="avatar" src="<%=current_user.avatar.gsub("square","large")  %>"> <div class="name"><%=current_user.first_name%>  <%=current_user.last_name%> <br>San Francisco CA</div>
 						<div style="clear:both"></div>
 					</div>
-
-
 					<div class="to_address">
-
-						<input class="dotted" placeholder="Full Name">
+						<input class="dotted send_to" placeholder="Full Name" value="<%=@names%>">
 						<br>
 						<input class="dotted" placeholder="City & State">
-
 					</div>
 				</div>
-
 			</div>
 
 			</div>
@@ -65,17 +55,17 @@
 
 			<div class="mail_label">delivery speed</div>
 
-			<div class="delivery_box box_active">
+			<div class="stamp1 delivery_box box_active">
 				<img src="/assets/pony.png" style="width:166px; height:125px"><br>
 				<b class="delivery_method">Pony Express</b><br>3 days
 			</div>
 
-			<div class="delivery_box">
+			<div class="stamp2 delivery_box">
 				<img src="/assets/stagecoach.png" style="width:182px; height:125px"><br>
 				<b class="delivery_method">Stagecoach</b><br>5 days
 			</div>
 
-			<div class="delivery_box">
+			<div class="stamp3 delivery_box">
 				<img src="/assets/clipper.png" style="width:188px; height:125px"><br>
 				<b class="delivery_method">Clipper Ship</b><br>10 days
 			</div>

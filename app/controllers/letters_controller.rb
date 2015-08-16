@@ -46,9 +46,16 @@ class LettersController < ApplicationController
   end
 
   def draft
+
+    User.algolia_reindex!
+
+    @search = User.search("cindy")
+
+
     @draft_in_progress = true
 
     @receiver_id = []
+
     @user = User.find_by_username(params[:username])
 
 

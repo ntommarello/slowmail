@@ -17,3 +17,4 @@
 //= require angular-route
 //= require angular-redactor
 //= require_tree .
+//= require algolia/algoliasearch.min
